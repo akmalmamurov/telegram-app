@@ -1,0 +1,57 @@
+@keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .coin-click {
+    animation: pop 0.2s ease-in-out;
+  }
+  
+  .coin-increment {
+    animation: fadeUp 0.3s ease-in-out;
+  }
+  
+  .clickInfo {
+    margin-top: 10px;
+  }
+  .coin-increment-animation {
+    position: relative;
+    animation: increment-appear 1s ease-in-out;
+    color: #fbd772;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  @keyframes increment-appear {
+    0% {
+      opacity: 1;
+      top: 0px;
+    }
+    50% {
+      opacity: 0.8;
+      top: -20px;
+    }
+    100% {
+      opacity: 0;
+      top: -40px;
+    }
+  }
+  
