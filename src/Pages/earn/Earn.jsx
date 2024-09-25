@@ -1,14 +1,13 @@
 import { CoinClickIcon, CoinIcon } from "@/assets/icons";
 import "./Earn.css";
-import { useCallback, useState, useEffect, useContext } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useFetchData } from "@/hooks";
 import axios from "axios";
 import * as API from "@/constants/api";
 import { formatNumberWithSpaces } from "@/utils";
-import { Context } from "@/context/UserContext";
 
 const Earn = () => {
-  const {userId} = useContext(Context);
+  const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
   const { data: earn, refetch } = useFetchData("main-page", userId);
   const [isClicked, setIsClicked] = useState(false);
   const [showIncrement, setShowIncrement] = useState(false);
@@ -49,7 +48,7 @@ const Earn = () => {
     } else {
       console.log("Maximum coin limit reached!");
     }
-  }, [maxCoin, userId, refetch]);
+  }, []);
 
   return (
     <div className="w-full font-jomhuria">
