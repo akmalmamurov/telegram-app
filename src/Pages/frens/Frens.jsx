@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import * as API from "@/constants/api";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import { useFetchData } from "@/hooks";
+import { Context } from "@/context/UserContext";
 
 const Frens = () => {
-  const userId = 2;
+  const {userId} = useContext(Context);  
   const { data: frens, error, refetch } = useFetchData("friends", userId);
 
   const handleUpdate = useCallback(

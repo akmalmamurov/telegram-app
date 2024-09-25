@@ -1,8 +1,11 @@
 import VoucherCard from "@/components/card/VoucherCard";
+import { Context } from "@/context/UserContext";
 import { useFetchData } from "@/hooks";
+import { useContext } from "react";
 
 const Stats = () => {
-  const userId = 2;
+  const {userId} = useContext(Context);
+
   const { data: voucher } = useFetchData("vouchers", userId);
 
   return (

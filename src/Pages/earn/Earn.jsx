@@ -1,13 +1,14 @@
 import { CoinClickIcon, CoinIcon } from "@/assets/icons";
 import "./Earn.css";
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useContext } from "react";
 import { useFetchData } from "@/hooks";
 import axios from "axios";
 import * as API from "@/constants/api";
 import { formatNumberWithSpaces } from "@/utils";
+import { Context } from "@/context/UserContext";
 
 const Earn = () => {
-  const userId = 2;
+  const {userId} = useContext(Context);
   const { data: earn, refetch } = useFetchData("main-page", userId);
   const [isClicked, setIsClicked] = useState(false);
   const [showIncrement, setShowIncrement] = useState(false);

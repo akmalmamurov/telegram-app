@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import TaskIcon from "@/assets/icons/TaskIcon";
 import { formatNumberWithSpaces } from "@/utils";
 import * as API from "@/constants/api";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import axios from "axios";
+import { Context } from "@/context/UserContext";
 
 const Tasks = () => {
-  const userId = 2;
+  const {userId} = useContext(Context);
+
   const { data: task, refetch } = useFetchData("tasks", userId);
 
   const handleUpdate = useCallback(
@@ -99,11 +101,14 @@ const Tasks = () => {
               {item.is_complete ? (
                 <button
                   onClick={(e) => {
-                    e.stopPropagation(); 
+                    e.stopPropagation();
                     handleClaim(item.task_pk);
                   }}
                   className={`text-white bg-blue-600 px-4 text-xl rounded ${
-                    item.is_claimed ? "bg-gray-600 cursor-not-allowed opacity-80" : ""}`}
+                    item.is_claimed
+                      ? "bg-gray-600 cursor-not-allowed opacity-80"
+                      : ""
+                  }`}
                 >
                   Claim
                 </button>
