@@ -5,7 +5,7 @@ export const Context = ({ children }) => {
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    const telegramUser = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+    const telegramUser = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
     if (telegramUser) {
       setUserId(telegramUser);

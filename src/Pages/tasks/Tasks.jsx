@@ -9,7 +9,7 @@ import axios from "axios";
 import { Context } from "@/context/UserContext";
 
 const Tasks = () => {
-  const {userId} = useContext(Context);
+  const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
   const { data: task, refetch } = useFetchData("tasks", userId);
 

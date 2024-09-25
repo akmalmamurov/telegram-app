@@ -53,9 +53,9 @@ const Earn = () => {
   return (
     <div className="w-full font-jomhuria">
       <div className="flex justify-center gap-2 items-center">
-        <CoinIcon className={`mb-3 ${isClicked ? "coin-click" : ""}`} />
+        <CoinIcon className={`mb-2 ${isClicked ? "coin-click" : ""}`} />
         <span
-          className={`text-white text-[96px] ${
+          className={`text-white text-[86px] ${
             isClicked ? "coin-increment" : ""
           }`}
         >
@@ -63,7 +63,7 @@ const Earn = () => {
         </span>
       </div>
 
-      <div className="flex flex-col items-center my-20 relative coin-click">
+      <div className="flex flex-col items-center my-14 relative coin-click">
         {showIncrement && (
           <div className="coin-increment-animation absolute top-[-120px] text-[56px] text-white">
             +{earn?.add_coin}
@@ -75,7 +75,7 @@ const Earn = () => {
       </div>
 
       <div className="flex items-center justify-center gap-2">
-        <svg
+      <svg
           width="20"
           height="28"
           viewBox="0 0 20 28"
@@ -95,7 +95,7 @@ const Earn = () => {
           </defs>
         </svg>
         <span className="text-white text-[20px]">
-          {formatNumberWithSpaces(`${maxCoin} / ${earn?.limit_coin}`)}
+          {formatNumberWithSpaces(`${maxCoin} / ${earn?.limit_coin || 0}`)}
         </span>
       </div>
     </div>

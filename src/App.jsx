@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Boots from "./Pages/boots/Boost";
 import Earn from "./Pages/earn/Earn";
 import Frens from "./Pages/frens/Frens";
@@ -12,17 +12,13 @@ const App = () => {
     <BrowserRouter>
       <ToastContainer position="top-center" theme="dark" />
       <Routes>
-        {/* Redirect the root to /main */}
-        <Route path="/" element={<Navigate to="/main" />} />
-        
-        {/* Main Layout */}
-        <Route path="/main" element={<Layout />}>
-          {/* Nested routes should not start with / */}
-          <Route path="frens" element={<Frens />} />
-          <Route path="tasks" element={<Tasks />} />
-          <Route path="" element={<Earn />} /> {/* /main will show Earn */}
-          <Route path="boost" element={<Boots />} />
-          <Route path="stats" element={<Stats />} />
+       
+        <Route path="/" element={<Layout />}>
+          <Route path="/frens" element={<Frens />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route index element={<Earn />} />
+          <Route path="/boost" element={<Boots />} />
+          <Route path="/stats" element={<Stats />} />
         </Route>
       </Routes>
     </BrowserRouter>

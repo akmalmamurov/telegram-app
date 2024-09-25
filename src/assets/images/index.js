@@ -1,5 +1,4 @@
-import coin  from "./coin.svg";
+import coin from "./coin.svg";
+import loadingImg from "./loading.png";
 
-export {
-    coin
-}
+export { coin, loadingImg };

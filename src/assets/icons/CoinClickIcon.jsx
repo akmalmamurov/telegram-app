@@ -1,4 +1,3 @@
-
 export const CoinClickIcon = (props) => {
   return (
     <svg
@@ -9,25 +8,159 @@ export const CoinClickIcon = (props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <ellipse
-        cx="124.422"
-        cy="122.508"
-        rx="124.422"
-        ry="122.508"
-        fill="#EFC269"
-      />
-      <path
-        d="M238.771 122.507C238.771 184.597 187.583 234.944 124.42 234.944C61.258 234.944 10.0693 184.597 10.0693 122.507C10.0693 60.4181 61.258 10.0706 124.42 10.0706C187.583 10.0706 238.771 60.4181 238.771 122.507Z"
-        fill="url(#paint0_linear_438_46)"
-        stroke="url(#paint1_linear_438_46)"
-      />
-      <path
-        d="M116.104 172H114.568C111.155 172 108.296 171.744 105.992 171.232C103.773 170.72 101.811 169.696 100.104 168.16C98.4827 166.539 97.2027 164.747 96.264 162.784C95.4107 160.821 94.728 157.877 94.216 153.952C93.448 148.064 93.064 140.171 93.064 130.272C93.064 120.288 93.1067 113.248 93.192 109.152C93.3627 105.056 93.704 101.088 94.216 97.248C94.728 93.3227 95.4107 90.4213 96.264 88.544C97.2027 86.5813 98.4827 84.832 100.104 83.296C101.811 81.6747 103.773 80.6507 105.992 80.224C108.296 79.712 111.155 79.456 114.568 79.456H116.104V172ZM121.224 79.456H137.48C143.709 79.456 148.403 80.5227 151.56 82.656C154.803 84.7893 156.424 88.5013 156.424 93.792V105.312C156.424 107.104 155.827 108 154.632 108H138.504C137.309 108 136.584 107.829 136.328 107.488C136.072 107.147 135.944 106.421 135.944 105.312V95.328C135.944 93.9627 135.731 93.024 135.304 92.512C134.963 91.9147 134.024 91.616 132.488 91.616H121.224V79.456ZM138.504 143.456H154.632C155.827 143.456 156.424 144.352 156.424 146.144V157.664C156.424 162.955 154.803 166.667 151.56 168.8C148.403 170.933 143.709 172 137.48 172H121.224V159.84H132.488C134.024 159.84 134.963 159.584 135.304 159.072C135.731 158.475 135.944 157.493 135.944 156.128V146.144C135.944 145.035 136.072 144.309 136.328 143.968C136.584 143.627 137.309 143.456 138.504 143.456Z"
-        fill="white"
-      />
+      <g filter="url(#filter0_iii_654_48)">
+        <ellipse
+          cx="124.422"
+          cy="122.508"
+          rx="124.422"
+          ry="122.508"
+          fill="#EFC269"
+        />
+        <path
+          d="M238.771 122.507C238.771 184.597 187.583 234.944 124.42 234.944C61.258 234.944 10.0693 184.597 10.0693 122.507C10.0693 60.4181 61.258 10.0706 124.42 10.0706C187.583 10.0706 238.771 60.4181 238.771 122.507Z"
+          fill="url(#paint0_linear_654_48)"
+          stroke="url(#paint1_linear_654_48)"
+        />
+        <g filter="url(#filter1_ii_654_48)">
+          <path
+            d="M69.5 164H36V136H69.5V107.5H136V78H202.5V164H169V107.5H136V164H102V136H69.5V164Z"
+            fill="#F9E5B0"
+            fillOpacity="0.24"
+          />
+        </g>
+        <path
+          d="M69.5 136V164H36V136H69.5ZM69.5 136H102V164H136V107.5M69.5 136V107.5H136M136 107.5H169V164H202.5V78H136V107.5Z"
+          stroke="#E4C065"
+          strokeOpacity="0.3"
+        />
+      </g>
       <defs>
+        <filter
+          id="filter0_iii_654_48"
+          x={0}
+          y={-12}
+          width="252.844"
+          height="261.015"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy={9} />
+          <feGaussianBlur stdDeviation={2} />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_654_48"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx={5} dy={-5} />
+          <feGaussianBlur stdDeviation={2} />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_654_48"
+            result="effect2_innerShadow_654_48"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy={-12} />
+          <feGaussianBlur stdDeviation={15} />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect2_innerShadow_654_48"
+            result="effect3_innerShadow_654_48"
+          />
+        </filter>
+        <filter
+          id="filter1_ii_654_48"
+          x="35.5"
+          y="76.5"
+          width="168.5"
+          height={90}
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx={1} dy={2} />
+          <feGaussianBlur stdDeviation="3.65" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_654_48"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx={1} dy={-1} />
+          <feGaussianBlur stdDeviation="4.45" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_654_48"
+            result="effect2_innerShadow_654_48"
+          />
+        </filter>
         <linearGradient
-          id="paint0_linear_438_46"
+          id="paint0_linear_654_48"
           x1="53.9146"
           y1="37.3262"
           x2="212.154"
@@ -39,7 +172,7 @@ export const CoinClickIcon = (props) => {
           <stop offset={1} stopColor="#E2BC62" />
         </linearGradient>
         <linearGradient
-          id="paint1_linear_438_46"
+          id="paint1_linear_654_48"
           x1="41.4724"
           y1="33.8169"
           x2="173.232"

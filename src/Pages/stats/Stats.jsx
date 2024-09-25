@@ -4,7 +4,7 @@ import { useFetchData } from "@/hooks";
 import { useContext } from "react";
 
 const Stats = () => {
-  const {userId} = useContext(Context);
+  const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
   const { data: voucher } = useFetchData("vouchers", userId);
 

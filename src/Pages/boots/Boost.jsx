@@ -5,8 +5,6 @@ import {
   EnergyIcon,
   MultiTapIcon,
   RechargingIcon,
-  TappingLeftIcon,
-  TappingRightIcon,
   TaskCoinIcon,
 } from "@/assets/icons";
 import { useFetchData } from "@/hooks";
@@ -14,7 +12,7 @@ import { toast } from "react-toastify";
 import request from "@/services";
 import * as API from "@/constants/api";
 const Boost = () => {
-  const userId = 2;
+  const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
   const { data: bost, refetch } = useFetchData("boosts", userId);
   console.log(bost);
 
@@ -38,37 +36,13 @@ const Boost = () => {
 
       <div className="flex justify-center gap-2 items-center font-jomhuria">
         <CoinIcon className={`mb-3`} />
-        <span className={`text-white text-[96px] tracking-wider`}>
+        <span className={`text-white text-[80px] tracking-wider`}>
           {formatNumberWithSpaces(bost?.user_coin)}
         </span>
       </div>
 
       <div className="w-full py-[0] px-[24px]">
         <div className="border-b-[2px] border-[#303b58] my-[21px]"> </div>
-        {/* <div className="flex gap-[22px] mb-[25px]">
-          <div className="px-[17px] py-[13px] bg-[#303B58] flex items-center gap-[7px] rounded-[10px]">
-            <TappingLeftIcon />
-            <div className=" text-white">
-              <h1 className="text-base leading-[23.71px] font-normal font-kavivanar">
-                Tapping Guru
-              </h1>
-              <p className="font-jomhuria text-[24px] leading-6">
-                {bost?.boost_tap}/{bost?.boost_tap}
-              </p>
-            </div>
-          </div>
-          <div className="px-[17px] py-[13px] bg-[#303B58] flex items-center gap-[7px] rounded-[10px]">
-            <TappingRightIcon />
-            <div className=" text-white">
-              <h1 className="text-base leading-[23.71px] font-normal font-kavivanar">
-                Tapping Guru
-              </h1>
-              <p className="font-jomhuria text-[24px] leading-6">
-                {bost?.energy_full}/{bost?.energy_full}
-              </p>
-            </div>
-          </div>
-        </div> */}
 
         <h1 className="font-jomhuria text-[24px] text-white font-normal">
           Boosters:
