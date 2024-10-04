@@ -1,3 +1,4 @@
+@import url("./assets/fonts/fonts.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,30 +10,6 @@
   touch-action: none;
 }
 
-@font-face {
-  font-family: "Istok Web";
-  src: url("Fonts/IstokWeb-Regular.ttf");
-}
-@font-face {
-  font-family: "Kavivanar";
-  src: url("Fonts/Kavivanar-Regular.ttf");
-}
-@font-face {
-  font-family: "Jomhuria";
-  src: url("Fonts/Jomhuria-Regular.ttf");
-}
-@font-face {
-  font-family: "JejuGothic";
-  src: url("Fonts/JejuGothic-Regular.ttf");
-}
-@font-face {
-  font-family: "Hina Mincho";
-  src: url("Fonts/HinaMincho-Regular.ttf");
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url("Fonts/JetBrainsMono-Regular.ttf");
-}
 html,
 body {
   overflow: hidden;
@@ -42,13 +19,6 @@ body {
   touch-action: none;
 }
 
-
 .nav-link.active {
   background-color: #425ba5;
 }
-
-
-
-
-
-

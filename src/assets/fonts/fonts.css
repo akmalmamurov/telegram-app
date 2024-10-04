@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "Istok Web";
+    src: url("./IstokWeb-Regular.ttf");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "Kavivanar";
+    src: url("./Kavivanar-Regular.ttf");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "Jomhuria";
+    src: url("./Jomhuria-Regular.ttf");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "JejuGothic";
+    src: url("./JejuGothic-Regular.ttf");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "Hina Mincho";
+    src: url("./HinaMincho-Regular.ttf");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: url("./JetBrainsMono-Regular.ttf");
+    font-weight: 400;
+  }
