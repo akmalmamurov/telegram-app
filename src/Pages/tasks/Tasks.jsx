@@ -4,12 +4,20 @@ import { Link } from "react-router-dom";
 import TaskIcon from "@/assets/icons/TaskIcon";
 import { formatNumberWithSpaces } from "@/utils";
 import * as API from "@/constants/api";
-import { useCallback, useContext } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import { Context } from "@/context/UserContext";
+import { toast } from "react-toastify";
 
 const Tasks = () => {
-  const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+    if (telegramUserId) {
+      setUserId(telegramUserId);
+    } else {
+      toast.error("Telegram user ID is not available.");
+    }
+  }, []);
 
   const { data: task, refetch } = useFetchData("tasks", userId);
 

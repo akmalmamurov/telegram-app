@@ -6,7 +6,8 @@ import { useFetchData } from "@/hooks";
 import { Context } from "@/context/UserContext";
 
 const Frens = () => {
-  const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+  // const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+  const userId = 1878938651; 
   const { data: frens, error, refetch } = useFetchData("friends", userId);
 
   const handleUpdate = useCallback(

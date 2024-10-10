@@ -8,11 +8,11 @@ import { Context } from "./context/UserContext.jsx";
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Context>
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
     </Context>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

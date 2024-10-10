@@ -1,54 +1,59 @@
 import { CoinClickIcon, CoinIcon } from "@/assets/icons";
 import "./Earn.css";
-import { useCallback, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useFetchData } from "@/hooks";
 import axios from "axios";
 import * as API from "@/constants/api";
 import { formatNumberWithSpaces } from "@/utils";
+import { toast } from "react-toastify";
 
 const Earn = () => {
-  const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-  const { data: earn, refetch } = useFetchData("main-page", userId);
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+    if (telegramUserId) {
+      setUserId(telegramUserId);
+    } else {
+      toast.error("Telegram user ID is not available.");
+    }
+  }, []);
   const [isClicked, setIsClicked] = useState(false);
   const [showIncrement, setShowIncrement] = useState(false);
   const [maxCoin, setMaxCoin] = useState(0);
-  localStorage.setItem("userCoin", earn?.user_coin);
+  const { data: earn, refetch } = useFetchData("main-page", userId);
+
   useEffect(() => {
     if (earn) {
-      setMaxCoin(earn?.max_coin);
+      localStorage.setItem("userCoin", earn.user_coin);
+      setMaxCoin(earn.max_coin);
     }
   }, [earn]);
 
-  const handleClick = useCallback(async () => {
-    if (maxCoin > 0) {
-      try {
-        const addCoin = earn?.add_coin || 0;
+  const handleClick = async () => {
+    try {
+      const addCoin = earn?.add_coin || 0;
+      const res = await axios.put(
+        `${API.ENDPOINT}/main-page/${userId}/`,
+        {},
+        {
+          params: {
+            add_coin: addCoin,
+          },
+        }
+      );
 
-        const res = await axios.put(
-          `${API.ENDPOINT}/main-page/${userId}/`,
-          {},
-          {
-            params: {
-              add_coin: addCoin,
-            },
-          }
-        );
+      console.log("Coin added response:", res.data);
 
-        console.log("Coin added response:", res.data);
+      setIsClicked(true);
+      setShowIncrement(true);
 
-        setIsClicked(true);
-        setShowIncrement(true);
+      setTimeout(() => setShowIncrement(false), 1000);
 
-        setTimeout(() => setShowIncrement(false), 1000);
-
-        refetch();
-      } catch (err) {
-        console.error("Error adding coin:", err);
-      }
-    } else {
-      console.log("Maximum coin limit reached!");
+      refetch();
+    } catch (err) {
+      console.error("Error adding coin:", err);
     }
-  }, []);
+  };
 
   return (
     <div className="w-full font-jomhuria">
@@ -69,13 +74,17 @@ const Earn = () => {
             +{earn?.add_coin}
           </div>
         )}
-        <button onClick={handleClick} disabled={maxCoin <= 0}>
+        <button
+          className="cursor-pointer"
+          onClick={handleClick}
+          disabled={maxCoin <= 0}
+        >
           <CoinClickIcon />
         </button>
       </div>
 
       <div className="flex items-center justify-center gap-2">
-      <svg
+        <svg
           width="20"
           height="28"
           viewBox="0 0 20 28"
@@ -89,7 +98,7 @@ const Earn = () => {
             />
           </g>
           <defs>
-            <clipPath id="clip0_438_13)">
+            <clipPath id="clip0_438_13">
               <rect width="20" height="28" fill="white" />
             </clipPath>
           </defs>
