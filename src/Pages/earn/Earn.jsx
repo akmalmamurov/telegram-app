@@ -8,16 +8,15 @@ import { formatNumberWithSpaces } from "@/utils";
 import { toast } from "react-toastify";
 
 const Earn = () => {
-  const userId = 1878938651;
-  // const [userId, setUserId] = useState(null);
-  // useEffect(() => {
-  //   const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-  //   if (telegramUserId) {
-  //     setUserId(telegramUserId);
-  //   } else {
-  //     toast.error("Telegram user ID is not available.");
-  //   }
-  // }, []);
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+    if (telegramUserId) {
+      setUserId(telegramUserId);
+    } else {
+      toast.error("Telegram user ID is not available.");
+    }
+  }, []);
   const [isClicked, setIsClicked] = useState(false);
   const [showIncrement, setShowIncrement] = useState(false);
   const [maxCoin, setMaxCoin] = useState(0);
@@ -59,7 +58,9 @@ const Earn = () => {
   return (
     <div className="w-full font-jomhuria">
       <div className="flex justify-center gap-2 items-center">
-        <CoinIcon className={`mb-2 w-10 h-10 ${isClicked ? "coin-click" : ""}`} />
+        <CoinIcon
+          className={`mb-2 w-10 h-10 ${isClicked ? "coin-click" : ""}`}
+        />
         <span
           className={`text-white text-[56px] leading-none ${
             isClicked ? "coin-increment" : ""

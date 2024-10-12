@@ -1,13 +1,19 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import * as API from "@/constants/api";
-import { useCallback, useContext } from "react";
+import { useCallback } from "react";
 import { useFetchData } from "@/hooks";
-import { Context } from "@/context/UserContext";
 
 const Frens = () => {
-  // const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-  const userId = 1878938651; 
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+    if (telegramUserId) {
+      setUserId(telegramUserId);
+    } else {
+      toast.error("Telegram user ID is not available.");
+    }
+  }, []);
   const { data: frens, error, refetch } = useFetchData("friends", userId);
 
   const handleUpdate = useCallback(

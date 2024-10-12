@@ -13,16 +13,15 @@ import { toast } from "react-toastify";
 import request from "@/services";
 import * as API from "@/constants/api";
 const Boost = () => {
-  const userId = 1878938651;
-  // const [userId, setUserId] = useState(null);
-  // useEffect(() => {
-  //   const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-  //   if (telegramUserId) {
-  //     setUserId(telegramUserId);
-  //   } else {
-  //     toast.error("Telegram user ID is not available.");
-  //   }
-  // }, []);
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+    if (telegramUserId) {
+      setUserId(telegramUserId);
+    } else {
+      toast.error("Telegram user ID is not available.");
+    }
+  }, []);
   const { data: bost, refetch } = useFetchData("boosts", userId);
   console.log(bost);
 

@@ -28,12 +28,10 @@ const Layout = () => {
 
   return (
     <div className="h-screen flex flex-col bg-[#1a1c30]">
-      {/* Outlet bo'limi asosiy kontent uchun */}
       <div className="flex-grow px-5 py-2 overflow-y-auto">
         <Outlet />
       </div>
       
-      {/* Navbar bo'limi pastki qismda */}
       <div className="flex-shrink-0 px-5 py-8">
         <Navbar />
       </div>
