@@ -9,15 +9,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const Tasks = () => {
-  const [userId, setUserId] = useState(null);
-  useEffect(() => {
-    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-    if (telegramUserId) {
-      setUserId(telegramUserId);
-    } else {
-      toast.error("Telegram user ID is not available.");
-    }
-  }, []);
+  const userId = 1878938651;
+  // const [userId, setUserId] = useState(null);
+  // useEffect(() => {
+  //   const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+  //   if (telegramUserId) {
+  //     setUserId(telegramUserId);
+  //   } else {
+  //     toast.error("Telegram user ID is not available.");
+  //   }
+  // }, []);
 
   const { data: task, refetch } = useFetchData("tasks", userId);
 
@@ -67,8 +68,8 @@ const Tasks = () => {
   return (
     <div className="tasks font-jomhuria">
       <div className="flex justify-center gap-2 items-center">
-        <CoinIcon className={`mb-3`} />
-        <span className={`text-white text-[96px] tracking-wider`}>
+        <CoinIcon className={`mb-2 w-10 h-10`} />
+        <span className={`text-white text-[56px] leading-none`}>
           {formatNumberWithSpaces(task?.user_coin)}
         </span>
       </div>
