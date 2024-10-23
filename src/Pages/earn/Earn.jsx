@@ -5,18 +5,11 @@ import { useFetchData } from "@/hooks";
 import axios from "axios";
 import * as API from "@/constants/api";
 import { formatNumberWithSpaces } from "@/utils";
-import { toast } from "react-toastify";
+import useTelegramStore from "@/context/telegram";
 
 const Earn = () => {
-  const [userId, setUserId] = useState(null);
-  useEffect(() => {
-    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-    if (telegramUserId) {
-      setUserId(telegramUserId);
-    } else {
-      toast.error("Telegram user ID is not available.");
-    }
-  }, []);
+  const { userId } = useTelegramStore();
+
   const [isClicked, setIsClicked] = useState(false);
   const [showIncrement, setShowIncrement] = useState(false);
   const [maxCoin, setMaxCoin] = useState(0);

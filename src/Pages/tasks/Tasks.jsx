@@ -4,21 +4,12 @@ import { Link } from "react-router-dom";
 import TaskIcon from "@/assets/icons/TaskIcon";
 import { formatNumberWithSpaces } from "@/utils";
 import * as API from "@/constants/api";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import useTelegramStore from "@/context/telegram";
 
 const Tasks = () => {
-  const [userId, setUserId] = useState(null);
-  useEffect(() => {
-    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-    if (telegramUserId) {
-      setUserId(telegramUserId);
-    } else {
-      toast.error("Telegram user ID is not available.");
-    }
-  }, []);
-
+  const { userId } = useTelegramStore();
   const { data: task, refetch } = useFetchData("tasks", userId);
 
   const handleUpdate = useCallback(
@@ -73,7 +64,7 @@ const Tasks = () => {
         </span>
       </div>
 
-      {task?.tasks.map((item, index) => (
+      {task?.tasks?.map((item, index) => (
         <div
           className="bg-[#303B58] mb-3 font-kavivanar rounded-[10px] px-[23px] py-4"
           key={index}

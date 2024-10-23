@@ -1,18 +1,9 @@
 import VoucherCard from "@/components/card/VoucherCard";
+import useTelegramStore from "@/context/telegram";
 import { useFetchData } from "@/hooks";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 const Stats = () => {
-  const [userId, setUserId] = useState(null);
-  useEffect(() => {
-    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-    if (telegramUserId) {
-      setUserId(telegramUserId);
-    } else {
-      toast.error("Telegram user ID is not available.");
-    }
-  }, []);
+  const { userId } = useTelegramStore();
 
   const { data: voucher } = useFetchData("vouchers", userId);
 

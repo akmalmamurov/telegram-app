@@ -3,17 +3,11 @@ import axios from "axios";
 import * as API from "@/constants/api";
 import { useCallback } from "react";
 import { useFetchData } from "@/hooks";
+import useTelegramStore from "@/context/telegram";
 
 const Frens = () => {
-  const [userId, setUserId] = useState(null);
-  useEffect(() => {
-    const telegramUserId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-    if (telegramUserId) {
-      setUserId(telegramUserId);
-    } else {
-      toast.error("Telegram user ID is not available.");
-    }
-  }, []);
+  const { userId } = useTelegramStore();
+
   const { data: frens, error, refetch } = useFetchData("friends", userId);
 
   const handleUpdate = useCallback(
