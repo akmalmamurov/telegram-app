@@ -14,9 +14,11 @@ module.exports = withMT({
         hinaMincho: ['"Hina Mincho"', "serif"],
         jetBrainsMono: ['"JetBrains Mono"', "monospace"],
       },
+      colors: {
+        bodyColor: "#1a1c30",
+      },
     },
   },
 
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 });
-

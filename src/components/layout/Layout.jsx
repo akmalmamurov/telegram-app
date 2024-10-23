@@ -35,12 +35,11 @@ const Layout = () => {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-[#1a1c30]">
-      <div className="flex-grow px-5 py-2 overflow-y-auto">
+    <div className="h-screen flex flex-col bg-bodyColor">
+      <div className="flex-grow px-5 py-2 overflow-y-auto scrollbar-none">
         <Outlet />
       </div>
-
-      <div className="flex-shrink-0 px-5 py-8">
+      <div className="flex-shrink-0 px-5 py-4">
         <Navbar />
       </div>
     </div>
