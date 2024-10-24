@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { formatNumberWithSpaces } from "@/utils";
 import {
   ArrowRightIcon,
