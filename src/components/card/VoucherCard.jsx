@@ -1,27 +1,37 @@
-import { ArrowRightIcon, TaskCoinIcon, VoucherIcon } from "@/assets/icons";
+import {
+  ArrowRightIcon,
+  CloseIcon,
+  InfoIcon,
+  TaskCoinIcon,
+  VoucherIcon,
+} from "@/assets/icons";
 import { formatNumberWithSpaces } from "@/utils";
-import { toast } from "react-toastify";
 import { useState } from "react";
 import {
   Button,
   Dialog,
   DialogBody,
   DialogFooter,
+  DialogHeader,
 } from "@material-tailwind/react";
 import * as API from "@/constants/api";
 import axios from "axios";
+import SuccessToast from "../toast/SucessToast";
+import ErrorToast from "../toast/ErrorToast";
 
 const VoucherCard = (props) => {
   const { name, coin, som, userId, id } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
 
   const handleClick = () => {
     const userCoin = parseInt(localStorage.getItem("userCoin"), 10) || 0;
     if (userCoin >= coin) {
       setIsModalOpen(true);
     } else {
-      toast.error("Sizning coiningiz yetarli emas");
+      setErrorOpen(true);
     }
   };
 
@@ -32,7 +42,7 @@ const VoucherCard = (props) => {
         `${API.ENDPOINT}/${API.VOUCHERS}/${userId}/?voucher_id=${id}`
       );
       console.log(res.message);
-      toast.success("Sizning Voucheringiz muvaffaqiyatli qabul qilindi");
+      setToastOpen(true); // Show custom success toast on success
     } catch (error) {
       console.error("Error redeeming voucher:", error);
       toast.error("Sms yuborilmadi");
@@ -48,6 +58,7 @@ const VoucherCard = (props) => {
 
   return (
     <>
+      {/* Voucher card */}
       <div
         onClick={handleClick}
         className="bg-[#303B58] mb-3 rounded-[10px] px-[14px] py-[19px] cursor-pointer"
@@ -73,29 +84,48 @@ const VoucherCard = (props) => {
         </div>
       </div>
 
+      {/*  Toast */}
+      <SuccessToast open={toastOpen} setOpen={setToastOpen} />
+      <ErrorToast open={errorOpen} setOpen={setErrorOpen} />
+      {/* Modal */}
       <Dialog
         size="xs"
-        className="bg-[#1a1c30]"
+        className="bg-[#303B58] rounded-[24px]"
         open={isModalOpen}
         handler={handleCancel}
       >
-        <DialogBody>
-          <h2 className="font-jetBrainsMono text-center text-white">
-            Haqiqatdanham alishtirmoqchimisiz {coin} coinlarni {som} So'mga?
-          </h2>
+        <DialogHeader className="py-2">
+          <div className="flex justify-end w-full">
+            <button>
+              <CloseIcon onClick={handleCancel} />
+            </button>
+          </div>
+        </DialogHeader>
+        <DialogBody className="py-0 px-2">
+          <div className="flex flex-col items-center">
+            <span className="mb-3">
+              <InfoIcon />
+            </span>
+            <p className="font-jomhuria text-[32px] text-white text-center leading-6 flex flex-col">
+              Do you really want to get a <span>voucher?</span>
+            </p>
+          </div>
         </DialogBody>
-        <DialogFooter className="space-x-2">
-          <Button variant="text" color="red" onClick={handleCancel}>
-            Yo'q
+        <DialogFooter className="space-x-2 flex justify-center">
+          <Button
+            className="w-[100px] bg-[#E14736] capitalize h-[37px] flex items-center justify-center rounded-[15px] font-semibold text-base"
+            onClick={handleCancel}
+          >
+            No
           </Button>
           <Button
-            variant="gradient"
-            color="blue"
-            className={isLoading ? "opacity-50 cursor-not-allowed" : ""}
+            className={`${
+              isLoading ? "opacity-50 cursor-not-allowed" : ""
+            } w-[100px] bg-[#4CA659] capitalize h-[37px] flex items-center justify-center rounded-[15px] font-semibold text-base`}
             onClick={handlePut}
             disabled={isLoading}
           >
-            {isLoading ? "Processing..." : "Hа"}
+            {isLoading ? "Processing..." : "Yes"}
           </Button>
         </DialogFooter>
       </Dialog>

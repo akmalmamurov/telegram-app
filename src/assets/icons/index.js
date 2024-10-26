@@ -7,4 +7,8 @@ export * from "./EnergyIcon";
 export * from "./RechargingIcon";
 export * from "./TappingLeftIcon";
 export * from "./TappingRightIcon";
-export * from "./VoucherIcon"
+export * from "./VoucherIcon";
+export * from "./UserIcon";
+export * from "./InfoIcon";
+export * from "./CloseIcon";
+export * from "./SmCloseIcon";

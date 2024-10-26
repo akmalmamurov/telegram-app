@@ -8,23 +8,26 @@ import {
   TaskCoinIcon,
 } from "@/assets/icons";
 import { useFetchData } from "@/hooks";
-import { toast } from "react-toastify";
 import request from "@/services";
 import * as API from "@/constants/api";
 import useTelegramStore from "@/context/telegram";
+import { useState } from "react";
+import ErrorToast from "@/components/toast/ErrorToast";
+import SuccessToast from "@/components/toast/SucessToast";
 const Boost = () => {
   const { userId } = useTelegramStore();
   const { data: bost, refetch } = useFetchData("boosts", userId);
-
+  const { errorOpen, setErrorOpen } = useState(false);
+  const [open, setOpen] = useState(false);
   const handlePut = async (type) => {
     try {
       await request.put(
         `${API.ENDPOINT}/${API.BOOSTS}/${userId}/?type=${type}`
       );
       refetch();
-      toast.success(`${type} muvaffaqiyatli qabul qilindi`);
+      setOpen(true);
     } catch (error) {
-      toast.error("Xatolik yuz berdi", error);
+      setErrorOpen(true);
     }
   };
 
@@ -36,7 +39,7 @@ const Boost = () => {
 
       <div className="flex justify-center gap-2 items-center font-jomhuria">
         <CoinIcon className={`mb-2 w-10 h-10`} />
-        <span className={`text-white text-[56px] leading-none`}>
+        <span className={`text-white text-[76px] leading-none`}>
           {formatNumberWithSpaces(bost?.user_coin)}
         </span>
       </div>
@@ -49,8 +52,14 @@ const Boost = () => {
         </h1>
         {/* Multitap */}
         <div
-          onClick={() => handlePut("multitap")}
-          className="bg-[#303B58] mb-3 font-kavivanar rounded-[10px] px-[18px] py-[22px] cursor-pointer"
+          onClick={() =>
+            bost?.multitap?.level < 19 && handlePut("multitap")
+          }
+          className={`${
+            bost?.multitap?.level >= 19
+              ? "opacity-80 cursor-not-allowed bg-[#333A49]"
+              : "opacity-100 cursor-pointer bg-[#303B58]"
+          }  mb-3 font-kavivanar rounded-[10px] px-[18px] py-[22px]`}
         >
           <div className="flex justify-between items-center">
             <div className=" flex items-center gap-[25px]">
@@ -83,8 +92,14 @@ const Boost = () => {
         </div>
         {/* Energy */}
         <div
-          onClick={() => handlePut("energy_limit")}
-          className="bg-[#303B58] mb-3 font-kavivanar rounded-[10px] px-[18px] py-[22px] cursor-pointer"
+       onClick={() =>
+        bost?.energy_limit?.level < 19 && handlePut("energy_limit")
+      }
+      className={`${
+        bost?.energy_limit?.level >= 19
+          ? "opacity-80 cursor-not-allowed bg-[#333A49]"
+          : "opacity-100 cursor-pointer bg-[#303B58]"
+      }  mb-3 font-kavivanar rounded-[10px] px-[18px] py-[22px]`}
         >
           <div className="flex justify-between items-center">
             <div className=" flex items-center gap-[25px]">
@@ -117,15 +132,21 @@ const Boost = () => {
         </div>
         {/* Recharging */}
         <div
-          onClick={() => handlePut("recharging_speed")}
-          className="bg-[#303B58] mb-3 font-kavivanar rounded-[10px] px-[18px] py-[22px] cursor-pointer"
+          onClick={() =>
+            bost?.recharging_speed?.level < 19 && handlePut("recharging_speed")
+          }
+          className={`${
+            bost?.recharging_speed?.level >= 19
+              ? "opacity-80 cursor-not-allowed bg-[#333A49]"
+              : "opacity-100 cursor-pointer bg-[#303B58]"
+          }  mb-3 font-kavivanar rounded-[10px] px-[18px] py-[22px]`}
         >
           <div className="flex justify-between items-center">
-            <div className=" flex items-center gap-[25px]">
+            <div className="flex items-center gap-[25px]">
               <RechargingIcon />
 
               <div>
-                <h1 className="font-kavivanar text-white ">Recharging Speed</h1>
+                <h1 className="font-kavivanar text-white">Recharging Speed</h1>
                 <div className="flex items-center gap-[14px]">
                   <div className="flex items-center gap-[5px] font-jomhuria text-[24px]">
                     <TaskCoinIcon />
@@ -134,7 +155,7 @@ const Boost = () => {
                     </span>
                   </div>
                   <div className="flex gap-[6px]">
-                    <div className=" bg-[#8c8787] h-[24px] w-[4px]"></div>
+                    <div className="bg-[#8c8787] h-[24px] w-[4px]"></div>
                     <div className="font-hinaMincho">
                       <p className="text-sm text-[#8C8787] leading-[20px] mb-1">
                         Level {bost?.recharging_speed?.level}
@@ -144,12 +165,14 @@ const Boost = () => {
                 </div>
               </div>
             </div>
-            <div className="">
+            <div>
               <ArrowRightIcon />
             </div>
           </div>
         </div>
       </div>
+      <SuccessToast open={open} setOpen={setOpen} />
+      <ErrorToast open={errorOpen} setOpen={setErrorOpen} />
     </div>
   );
 };

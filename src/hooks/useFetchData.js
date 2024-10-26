@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import request from "@/services";
 import * as API from "@/constants/api";
+import { toast } from "react-toastify";
 
 const fetchData = async ({ key, userId }) => {
   const response = await request.get(`${API.ENDPOINT}/${key}/${userId}/`);
@@ -14,7 +15,7 @@ const useData = (key, userId) => {
     queryFn: () => fetchData({ key, userId }),
     enabled: !!userId,
     onError: (error) => {
-      console.error("Error:", error);
+      toast.error("Error:", error);
     },
   });
 };

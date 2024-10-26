@@ -1,11 +1,12 @@
-import { CoinClickIcon, CoinIcon } from "@/assets/icons";
-import "./Earn.css";
 import { useState, useEffect } from "react";
-import { useFetchData } from "@/hooks";
 import axios from "axios";
-import * as API from "@/constants/api";
-import { formatNumberWithSpaces } from "@/utils";
+
+import { CoinClickIcon, CoinIcon } from "@/assets/icons";
 import useTelegramStore from "@/context/telegram";
+import { formatNumberWithSpaces } from "@/utils";
+import { useFetchData } from "@/hooks";
+import * as API from "@/constants/api";
+import "./Earn.css";
 
 const Earn = () => {
   const { userId } = useTelegramStore();
@@ -63,10 +64,14 @@ const Earn = () => {
         </span>
       </div>
 
-      <div className="flex flex-col items-center my-14 relative coin-click">
+      <div className="flex flex-col items-center my-14 ">
         {showIncrement && (
-          <div className="coin-increment-animation absolute top-[-120px] text-[56px] text-white">
-            +{earn?.add_coin}
+          <div className="w-[160px] relative">
+            <div className="absolute  w-[37px] h-[37px] bg-red-500 flex justify-center items-center rounded-full right-0 -top-[2px] added-coin">
+              <p className="font-jomhuria font-normal text-[32px] text-white">
+                +{earn?.add_coin}
+              </p>
+            </div>
           </div>
         )}
         <button
@@ -98,7 +103,7 @@ const Earn = () => {
             </clipPath>
           </defs>
         </svg>
-        <span className="text-white text-[20px]">
+        <span className="text-white text-[32px]">
           {formatNumberWithSpaces(`${maxCoin} / ${earn?.limit_coin || 0}`)}
         </span>
       </div>

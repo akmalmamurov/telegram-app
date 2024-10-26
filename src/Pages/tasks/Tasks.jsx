@@ -13,19 +13,35 @@ const Tasks = () => {
   const { data: task, refetch } = useFetchData("tasks", userId);
 
   const handleUpdate = useCallback(
-    async (task_pk) => {
+    async (task_pk, task_type) => {
       try {
-        const res = await axios.put(
-          `${API.ENDPOINT}/tasks-complete/${userId}/`,
-          {},
-          {
-            params: {
-              task_pk,
-              is_complete: true,
-            },
-          }
-        );
-        console.log("Task completed response:", res.data);
+        if (task_type === "telegram") {
+         
+          const res = await axios.put(
+            `${API.ENDPOINT}/tasks-complete/${userId}/`,
+            {},
+            {
+              params: { task_pk },
+            }
+          );
+          console.log("Task completed response (telegram):", res.data);
+        } else {
+        
+          setTimeout(async () => {
+            const res = await axios.put(
+              `${API.ENDPOINT}/tasks-complete/${userId}/`,
+              {},
+              {
+                params: {
+                  task_pk,
+                  is_complete: true,
+                },
+              }
+            );
+            console.log("Task completed response (other):", res.data);
+            refetch();
+          }, 3000);
+        }
         refetch();
       } catch (err) {
         console.error("Error updating task:", err);
@@ -59,7 +75,7 @@ const Tasks = () => {
     <div className="tasks font-jomhuria">
       <div className="flex justify-center gap-2 items-center">
         <CoinIcon className={`mb-2 w-10 h-10`} />
-        <span className={`text-white text-[56px] leading-none`}>
+        <span className={`text-white text-[76px] leading-none`}>
           {formatNumberWithSpaces(task?.user_coin)}
         </span>
       </div>
@@ -69,9 +85,7 @@ const Tasks = () => {
           className="bg-[#303B58] mb-3 font-kavivanar rounded-[10px] px-[23px] py-4"
           key={index}
           onClick={() =>
-            item.task_type !== "telegram" && !item.is_complete
-              ? handleUpdate(item.task_pk)
-              : null
+            !item.is_complete ? handleUpdate(item.task_pk, item.task_type) : null
           }
         >
           <Link
@@ -95,25 +109,22 @@ const Tasks = () => {
             </div>
           </Link>
 
-          {item.task_type !== "telegram" && (
-            <div className="flex justify-end">
-              {item.is_complete ? (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleClaim(item.task_pk);
-                  }}
-                  className={`text-white bg-blue-600 px-4 text-xl rounded ${
-                    item.is_claimed
-                      ? "bg-gray-600 cursor-not-allowed opacity-80"
-                      : ""
-                  }`}
-                >
-                  Claim
-                </button>
-              ) : null}
-            </div>
-          )}
+          <div className="flex justify-end">
+            {item.is_complete && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClaim(item.task_pk);
+                }}
+                className={`text-white bg-blue-600 px-4 text-xl rounded ${
+                  item.is_claimed ? "bg-gray-600 cursor-not-allowed opacity-80" : ""
+                }`}
+                disabled={item.is_claimed}
+              >
+                Claim
+              </button>
+            )}
+          </div>
         </div>
       ))}
     </div>
