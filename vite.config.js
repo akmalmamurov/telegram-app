@@ -19,5 +19,6 @@ export default defineConfig({
 
   server: {
     historyApiFallback: true,
+    rewrite: [{ from: /^\/$/, to: "/index.html" }],
   },
 });
