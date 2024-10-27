@@ -16,7 +16,6 @@ const Tasks = () => {
     async (task_pk, task_type) => {
       try {
         if (task_type === "telegram") {
-         
           const res = await axios.put(
             `${API.ENDPOINT}/tasks-complete/${userId}/`,
             {},
@@ -26,7 +25,6 @@ const Tasks = () => {
           );
           console.log("Task completed response (telegram):", res.data);
         } else {
-        
           setTimeout(async () => {
             const res = await axios.put(
               `${API.ENDPOINT}/tasks-complete/${userId}/`,
@@ -85,7 +83,9 @@ const Tasks = () => {
           className="bg-[#303B58] mb-3 font-kavivanar rounded-[10px] px-[23px] py-4"
           key={index}
           onClick={() =>
-            !item.is_complete ? handleUpdate(item.task_pk, item.task_type) : null
+            !item.is_complete
+              ? handleUpdate(item.task_pk, item.task_type)
+              : null
           }
         >
           <Link
@@ -107,24 +107,22 @@ const Tasks = () => {
                 </div>
               </div>
             </div>
-          </Link>
 
-          <div className="flex justify-end">
-            {item.is_complete && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleClaim(item.task_pk);
-                }}
-                className={`text-white bg-blue-600 px-4 text-xl rounded ${
-                  item.is_claimed ? "bg-gray-600 cursor-not-allowed opacity-80" : ""
-                }`}
-                disabled={item.is_claimed}
-              >
-                Claim
-              </button>
-            )}
-          </div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClaim(item.task_pk);
+              }}
+              className={`text-white bg-blue-600 px-4 text-xl rounded ${
+                item.is_claimed
+                  ? "bg-gray-600 cursor-not-allowed opacity-80"
+                  : ""
+              }`}
+              disabled={item.is_claimed}
+            >
+              Claim
+            </button>
+          </Link>
         </div>
       ))}
     </div>

@@ -20,12 +20,12 @@ const Layout = () => {
 
   return (
     <div className="h-screen flex flex-col bg-bodyColor">
-      <div className="flex-grow px-5 pt-10 overflow-auto scrollbar-none">
+      <div className="flex-grow px-5 pt-10 pb-32 overflow-y-auto">
         <Outlet />
       </div>
-      <div className="flex-shrink-0 px-5 py-4">
+      <aside className="fixed bottom-0 w-full px-5 z-10 py-[31px] bg-bodyColor">
         <Navbar />
-      </div>
+      </aside>
     </div>
   );
 };
