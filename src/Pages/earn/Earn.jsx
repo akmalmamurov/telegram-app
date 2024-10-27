@@ -67,7 +67,7 @@ const Earn = () => {
       <div className="flex flex-col items-center my-14 ">
         {showIncrement && (
           <div className="w-[160px] relative">
-            <div className="absolute  w-[37px] h-[37px] bg-red-500 flex justify-center items-center rounded-full right-0 -top-[2px] added-coin">
+            <div className="absolute  w-[37px] h-[37px] flex justify-center items-center rounded-full right-0 -top-[2px] added-coin">
               <p className="font-jomhuria font-normal text-[32px] text-white">
                 +{earn?.add_coin}
               </p>

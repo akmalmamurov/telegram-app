@@ -6,6 +6,17 @@ export default defineConfig({
   resolve: {
     alias: [{ find: "@", replacement: "/src" }],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react"],
+          "react-dom": ["react-dom"],
+        },
+      },
+    },
+  },
+
   server: {
     historyApiFallback: true,
   },
