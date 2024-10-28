@@ -42,7 +42,7 @@ const VoucherCard = (props) => {
         `${API.ENDPOINT}/${API.VOUCHERS}/${userId}/?voucher_id=${id}`
       );
       console.log(res.message);
-      setToastOpen(true); // Show custom success toast on success
+      setToastOpen(true); 
     } catch (error) {
       console.error("Error redeeming voucher:", error);
       toast.error("Sms yuborilmadi");

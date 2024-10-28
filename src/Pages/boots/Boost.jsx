@@ -14,6 +14,7 @@ import useTelegramStore from "@/context/telegram";
 import { useState } from "react";
 import ErrorToast from "@/components/toast/ErrorToast";
 import SuccessToast from "@/components/toast/SucessToast";
+import { toast } from "react-toastify";
 const Boost = () => {
   const { userId } = useTelegramStore();
   const { data: bost, refetch } = useFetchData("boosts", userId);
@@ -22,11 +23,18 @@ const Boost = () => {
   const handlePut = async (type) => {
     try {
       await request.put(
-        `${API.ENDPOINT}/${API.BOOSTS}/${userId}/?type=${type}`
+        `${API.ENDPOINT}/${API.BOOSTS}/${userId}/`,
+        {},
+        {
+          params: {
+            type,
+          },
+        }
       );
       refetch();
       setOpen(true);
     } catch (error) {
+      toast.error("No Coin", error.message);
       setErrorOpen(true);
     }
   };
@@ -52,9 +60,7 @@ const Boost = () => {
         </h1>
         {/* Multitap */}
         <div
-          onClick={() =>
-            bost?.multitap?.level < 19 && handlePut("multitap")
-          }
+          onClick={() => bost?.multitap?.level < 19 && handlePut("multitap")}
           className={`${
             bost?.multitap?.level >= 19
               ? "opacity-80 cursor-not-allowed bg-[#333A49]"
@@ -92,14 +98,14 @@ const Boost = () => {
         </div>
         {/* Energy */}
         <div
-       onClick={() =>
-        bost?.energy_limit?.level < 19 && handlePut("energy_limit")
-      }
-      className={`${
-        bost?.energy_limit?.level >= 19
-          ? "opacity-80 cursor-not-allowed bg-[#333A49]"
-          : "opacity-100 cursor-pointer bg-[#303B58]"
-      }  mb-3 font-kavivanar rounded-[10px] px-[18px] py-[22px]`}
+          onClick={() =>
+            bost?.energy_limit?.level < 19 && handlePut("energy_limit")
+          }
+          className={`${
+            bost?.energy_limit?.level >= 19
+              ? "opacity-80 cursor-not-allowed bg-[#333A49]"
+              : "opacity-100 cursor-pointer bg-[#303B58]"
+          }  mb-3 font-kavivanar rounded-[10px] px-[18px] py-[22px]`}
         >
           <div className="flex justify-between items-center">
             <div className=" flex items-center gap-[25px]">
